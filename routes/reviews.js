@@ -34,7 +34,7 @@ router.post('/', function(req, res, next) {
 
 /* DELETE reviews */
 router.delete('/', function(req, res, next) {
-  res.send(reviews=[], "/ DELETE OK");
+  res.send(reviews=[]);
 });
 
 /* GET review */
