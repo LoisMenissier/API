@@ -2,7 +2,7 @@
 <content>
 #API
 Ce projet fait référence au cours concernant les API et WebServices.
-Reviews.
+Ce projet concerne le thème des : <b>Reviews</b>.
 ## Responses
 1. <b>Que se passe-t-il? Analysez le fichier generé. Que contient-il ?</b>
 <i>Création du fichier “package.json”.
