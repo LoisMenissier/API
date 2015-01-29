@@ -2,58 +2,76 @@ var express = require('express');
 var router = express.Router();
 var lodash = require('lodash');
 
-var reviews = [
-	{
-	name: 'McDo',
-	placeType: 'Fastfood',
-	stars: 3
-	},
-	{
-	name: 'Quick',
-	placeType: 'Fastfood',
-	stars: 5
-	}
-];
+var Review = require('../models/review');
 
-/* GET reviews */
-router.get('/', function(req, res, next) {
-  //res.render('reviews', { title: 'Reviews', reviews: reviews });
-  res.send(reviews);
-});
-
-/* POST reviews */
-router.post('/', function(req, res, next) {
-	console.log('body', req.body);
-  reviews.push({
-	name: req.body.name,
-	placeType: req.body.placeType,
-	stars: req.body.stars
+router.get('/', function(req, res){	
+	Review.find( {} , function(err, reviews){
+		if(err) {
+			res.send(404, err);
+		}
+		else {
+			res.send(200, reviews);
+		}
 	});
-  res.send(reviews);
 });
 
-/* DELETE reviews */
-router.delete('/', function(req, res, next) {
-  res.send(reviews=[]);
+router.post('/', function(req, res){
+	
+	review = new Review();
+	review.name = req.body.name;
+	review.placeType = req.body.placeType;
+	review.stars = req.body.stars;
+
+	review.save(function(err, review){
+		if(err){
+			res.send(400, err);
+		}
+		else {
+			res.send(201, review);
+		}
+	});
 });
 
-/* GET review */
+router.delete('/', function(req, res){
+
+	Review.remove(function(err){
+		if(err)
+			res.send(404, err);
+		else
+			res.send(200, {message: 'Reviews deleted.'});
+	});
+});
+
 router.get('/:id', function(req, res){
-  res.send(reviews[req.params.id]);
+
+	Review.findById(req.params.id, function(err, review){
+		if(err)
+			res.send(404, err);
+		else
+			res.send(200, review);
+	});
 });
 
-/* PUT review */
 router.put('/:id', function(req, res){
-  reviews[req.params.id].name = req.body.name;
-  reviews[req.params.id].placeType = req.body.placeType;
-  reviews[req.params.id].stars = req.body.stars;
-  res.send(reviews[req.params.id]);
+
+	Review.update({ _id: req.params.id }, req.body, function(err, review){
+		if(err) {
+			res.send(404, err);
+		}
+		else {
+			res.send(200, {message: 'Review modified'});
+		}
+	});
 });
 
-/* DELETE review */
-router.delete('/:id', function(req, res) {
-  reviews = lodash.pullAt(reviews, [req.params.id]-1);
-  res.send(reviews);
+router.delete('/:id', function(req, res){
+	
+	Review.remove({ _id: req.params.id }, function(err, review){
+		if(err)
+			res.send(404, err);
+		else
+			res.send(200, { message: 'Review deleted'});
+	});
 });
 
 module.exports = router;
