@@ -15,7 +15,7 @@ Le fichier qui permet de lancer l'application est le fichier './bin/www', qui pe
 Le fichier qui permet d'afficher le contenu est le fichier './views/index.jade'. La method http utilisée est la méthode GET, et qui récupère le contenu.
 
 4. Qu’est­ce qu’une route en Express ?
-Une route en Express définie un comportement particulier de l'app, s'appuyant sur la requète qui est effectuée. Cela inclue la route utilisée (ex : "/", "/reviews", ...), la requète http spécifiée (GET, POST, DELETE, PUT, ...).`
+Une route en Express définie un comportement particulier de l'app, s'appuyant sur la requète qui est effectuée. Cela inclue la route utilisée (ex : "/", "/reviews", ...), la requète http spécifiée (GET, POST, DELETE, PUT, ...).
 
 5. À quoi sert les fichiers jade ?
 Les fichiers jade sont des fichiers de templating, ils permettent de créer une vue, et intègre les données gérées par l'application (généralement envoyées depuis les différentes routes, mais également les données de base de l'application -globales-).
