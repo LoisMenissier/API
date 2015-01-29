@@ -1,5 +1,7 @@
 <snippet>
 <content>
+#Accès
+<b>Lien vers Heroku :</b> <a href="https://place-advisor-restapi-lois.herokuapp.com">Heroku App</a>
 #API
 Ce projet fait référence au cours concernant les API et WebServices.
 Ce projet concerne le thème des : <b>Reviews</b>.
